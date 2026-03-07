@@ -17,7 +17,6 @@ round(prop.table(table(Base$`5. Tipo de Residência`)),2)
 library(dplyr)
 
 
-
 tabela_res <- Base %>%
   
   
