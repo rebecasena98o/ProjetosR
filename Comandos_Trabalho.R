@@ -58,10 +58,12 @@ idade <- CVLI_2024_a_2025$`Idade da Vítima`
 #Medidas de posição - onde os dados se concentram
 
 #Média
-mean(idade, na.rm = TRUE)
+MEdia <- mean(CVLI_2024_a_2025$`Idade da Vítima`)
+MEdia
 
 #Mediana
 median(idade, na.rm = TRUE)
+
 
 #Moda
 moda <- function(x) {
