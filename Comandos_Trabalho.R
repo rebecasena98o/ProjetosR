@@ -1,42 +1,57 @@
 # gráfico de barra - pega a base - nomes de variáveis - vetor e frequência - cores - título do gráfico
-barplot(table(CVLI_2024_a_2025$`5. Tipo de Residência`), xlab="Tipo residencia", ylab="Quantidade", ylim=c(0,80), col=c("green", "yellow","red"), main="Tipo de residencia")
+barplot(table(CVLI_2024_a_2025_1_$`5. Tipo de Residência`), xlab="Tipo residencia", ylab="Quantidade", ylim=c(0,80), col=c("green", "yellow","red"), main="Tipo de residencia")
 
-# Frequência absoluta da variável "Tipo de Residência"
+#--------------------------------------------------------------------------------
 
-freq <- table(CVLI_2024_a_2025$`Dia da Semana`)
-freq
+# Frequência absoluta 
+
+#Semana
+freq_Semana <- table(CVLI_2024_a_2025_1_$`Dia da Semana`)
+freq_Semana
+
+#Escolaridade da Vítima
+freq_Escolaridade <- table(CVLI_2024_a_2025_1_$`Escolaridade da Vítima`)
+freq_Escolaridade
+
+#Natureza do Crime
+freq_Natureza <- table(CVLI_2024_a_2025_1_$Natureza)
+freq_Natureza
+
+#Raça das vítimas
+freq_Raca <- table(CVLI_2024_a_2025_1_$`Raça da Vítima`)
+freq_Raca
+
+#--------------------------------------------------------------------------------
 
 # gráfico de setor - tipo de residência 
 
-pie(table(CVLI_2024_a_2025$Gênero), col=c("pink", "blue"), main = "Gráfico de Gênero")
+pie(table(CVLI_2024_a_2025_1_$Gênero), col=c("pink", "blue"), main = "Gráfico de Gênero")
 
-pie(table(CVLI_2024_a_2025$`Meio Empregado`), col=c("orange", "purple"), main = "Gráfico de Meio Empregado")
+pie(table(CVLI_2024_a_2025_1_$`Meio Empregado`), col=c("orange", "purple"), main = "Gráfico de Meio Empregado")
 
+
+#--------------------------------------------------------------------------------
 
 #Gráfico de barras
-barplot(table(CVLI_2024_a_2025$`Dia da Semana`))
-barplot(table(CVLI_2024_a_2025$`Escolaridade da Vítima`))
+#jeito simples e sem cor
+barplot(table(CVLI_2024_a_2025_1_$`Dia da Semana`))
+barplot(table(CVLI_2024_a_2025_1_$`Escolaridade da Vítima`))
 
+#Gráfico de barras
+#jeito complexo e com cores
+freq_SEMANA_table <- table(CVLI_2024_a_2025_1_$`Dia da Semana`)
 
-freq <- table(CVLI_2024_a_2025$`Dia da Semana`)
-
-barplot(freq,
+barplot(freq_SEMANA_table,
         xlab="Dia da Semana",
         ylab="Quantidade",
         main="Ocorrências por Dia da Semana",
         col=c("red","blue","green","yellow","purple","orange","pink"))
 
-freq <- table(CVLI_2024_a_2025$`Escolaridade da Vítima`)
 
-barplot(freq,
-        xlab="Escolaridade da Vítima",
-        ylab="Quantidade",
-        main="Ocorrências por Dia da Semana",
-        col=c("red","lightblue","lightgreen","lightyellow","purple","orange","pink"))
 
-freq <- table(CVLI_2024_a_2025$`Escolaridade da Vítima`)
+freq_ESCOLARIDADE_table <- table(CVLI_2024_a_2025_1_$`Escolaridade da Vítima`)
 
-barplot(freq,
+barplot(freq_ESCOLARIDADE_table,
         xlab="Escolaridade da Vítima",
         ylab="Quantidade",
         main="Ocorrências por Escolaridade",
@@ -44,15 +59,36 @@ barplot(freq,
 
 
 
+#--------------------------------------------------------------------------------
+
 #Freq. relativa
-tabW=prop.table(table(CVLI_2024_a_2025$`Dia da Semana`))
+
+#Semana
+tabW=prop.table(table(CVLI_2024_a_2025_1_$`Dia da Semana`))
 tabW
 
-#Freq. relativa - arredonda para 2 casas
-round(prop.table(table(CVLI_2024_a_2025$`Dia da Semana`)) * 100, 2)
+# Para visualizar em porcentagem (0% a 100%) e arredondar
+#Semana
+freq_Relativa_Semana <- round(tabW * 100, 2)
+print(freq_Relativa_Semana)
 
+#Escolaridade da Vítima
+tabWE=prop.table(table(CVLI_2024_a_2025_1_$`Escolaridade da Vítima`))
+tabW
 
-# ----------------------------------------------------------------
+# Para visualizar em porcentagem (0% a 100%) e arredondar
+freq_Relativa_Escolaridade <- round(tabWE * 100, 2)
+print(freq_relativa_escolaridade)
+
+#Raça das Vítimas
+tabWR = prop.table(table(CVLI_2024_a_2025_1_$`Raça da Vítima`))
+tabWR
+  
+# Para visualizar em porcentagem (0% a 100%) e arredondar
+freq_relativa_Raca <- round(tabWR * 100, 2)
+print(freq_relativa_Raca)
+
+#--------------------------------------------------------------------------------
 
 
 #Determinação das medidas de posição, dispersão e separação 
@@ -62,7 +98,7 @@ round(prop.table(table(CVLI_2024_a_2025$`Dia da Semana`)) * 100, 2)
 #Medidas de posição - onde os dados se concentram
 
 #idade_numerica armazena todas as idades como numero e "não informado" vira NA
-idade_numerica <- as.numeric(CVLI_2024_a_2025$`Idade da Vítima`)
+idade_numerica <- as.numeric(CVLI_2024_a_2025_1_$`Idade da Vítima`)
 
 #idade_valida armazena idades ignorando todos NA
 idade_valida <- idade_numerica[!is.na(idade_numerica)]
@@ -71,8 +107,13 @@ idade_valida <- idade_numerica[!is.na(idade_numerica)]
 idadeMedia <- mean(idade_valida)
 idadeMedia
 
+#--------------------------------------------------------------------------------
+
 #Mediana
-median(idadeMedia, na.rm = TRUE)
+mediana_idade <- median(idade_valida, na.rm = TRUE)
+mediana_idade
+
+#--------------------------------------------------------------------------------
 
 #Moda
 moda <- function(x) {
@@ -84,28 +125,33 @@ moda <- function(x) {
   
 }
 
-moda(idadeMedia)
+moda_idade <- moda(idade_valida)
+moda_idade
+
+#--------------------------------------------------------------------------------
 
 # MEDIDAS DE DISPERSÃO
 #IDADE VÍTIMA
 #Amplitude
 
-#amplitude_max <- as.numeric(max(CVLI_2024_a_2025$`Idade da Vítima`, na.rm = TRUE))
-#amplitude_min <- as.numeric(min(CVLI_2024_a_2025$`Idade da Vítima`, na.rm = TRUE))
+#amplitude_max <- as.numeric(max(CVLI_2024_a_2025_1_$`Idade da Vítima`, na.rm = TRUE))
+#amplitude_min <- as.numeric(min(CVLI_2024_a_2025_1_$`Idade da Vítima`, na.rm = TRUE))
 #amplitude_max_valida <- amplitude_max[!is.na(amplitude_max)]
 #amplitude_min_valida <- amplitude_min[!is.na(amplitude_min)]
 #amplitude_direta <- amplitude_max_valida - amplitude_min_valida
 #amplitude_direta
 
 #código limpo e de forma direta
-idadesV <- as.numeric(CVLI_2024_a_2025$`Idade da Vítima`)
+idadesV <- as.numeric(CVLI_2024_a_2025_1_$`Idade da Vítima`)
 summary(idadesV) # verifica se o resultado está correto antes de rodar
 amplitude_direta <- max(idadesV, na.rm = TRUE) - min(idadesV, na.rm = TRUE)
 amplitude_direta
 
+#--------------------------------------------------------------------------------
+
 #Variância 
 
-varianca <- as.numeric(CVLI_2024_a_2025$`Idade da Vítima`) #variância armazena 
+varianca <- as.numeric(CVLI_2024_a_2025_1_$`Idade da Vítima`) #variância armazena 
 #todas as idades como número e "não informado" vira NA
 
 varianca_valida <- varianca[!is.na(varianca)] # armazena idades ignorando todos os NA
@@ -113,9 +159,11 @@ varianca_valida <- varianca[!is.na(varianca)] # armazena idades ignorando todos 
 variancaOne <- var(varianca_valida) #armazena media de idade das vitimas
 variancaOne
 
+#--------------------------------------------------------------------------------
+
 #Desvio Padrão
 
-Desvio <- as.numeric(CVLI_2024_a_2025$`Idade da Vítima`) #Desvio armazena
+Desvio <- as.numeric(CVLI_2024_a_2025_1_$`Idade da Vítima`) #Desvio armazena
 #todas as idades como número e "não informado" vira NA
 
 Desvio_valido <- Desvio[!is.na(Desvio)] # Armazena idades ignorando todos os NA
@@ -123,16 +171,20 @@ Desvio_valido <- Desvio[!is.na(Desvio)] # Armazena idades ignorando todos os NA
 DesvioPadrao <- sd(Desvio_valido) #Armazena desvio padrão das idades das vítimas
 DesvioPadrao # resultado
 
+#--------------------------------------------------------------------------------
+
 #coeficiente de variação
 cv <- (DesvioPadrao/idadeMedia) * 100 
 cv
+
+#--------------------------------------------------------------------------------
 
 #separatrizes - valores
 #que dividem um conjunto de dados 
 #(ordenado do menor para o maior) em partes iguais
 
 # Quartis (Q): Dividem os dados em 4 partes (25% cada)
-OneQ <- as.numeric(CVLI_2024_a_2025$`Idade da Vítima`)
+OneQ <- as.numeric(CVLI_2024_a_2025_1_$`Idade da Vítima`)
 OneQ_valido <- OneQ[!is.na(OneQ)]
 Quartis <- quantile(OneQ_valido)
 Quartis
