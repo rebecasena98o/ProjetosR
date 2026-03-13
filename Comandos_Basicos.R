@@ -127,7 +127,7 @@ desvioPad
 cv= (desvioPad/mediaOne) * 100 #coeficiente de variação
 cv
 
-boxplot(Base$`3. Tempo Mora na Localidade`)
+boxplot(Base$`3. Tempo Mora na Localidade`) #bloxplot
 
 
 #Boxplot mostrando outliners:
