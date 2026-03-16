@@ -1,5 +1,5 @@
 # gráfico de barra - pega a base - nomes de variáveis - vetor e frequência - cores - título do gráfico
-barplot(table(CVLI_2024_a_2025_1_$`5. Tipo de Residência`), xlab="Tipo residencia", ylab="Quantidade", ylim=c(0,80), col=c("green", "yellow","red"), main="Tipo de residencia")
+#barplot(table(CVLI_2024_a_2025_1_$`5. Tipo de Residência`), xlab="Tipo residencia", ylab="Quantidade", ylim=c(0,80), col=c("green", "yellow","red"), main="Tipo de residencia")
 
 #--------------------------------------------------------------------------------
 
@@ -98,6 +98,7 @@ print(freq_relativa_Raca)
 #Medidas de posição - onde os dados se concentram
 
 #idade_numerica armazena todas as idades como numero e "não informado" vira NA
+#Idade da Vítima
 idade_numerica <- as.numeric(CVLI_2024_a_2025_1_$`Idade da Vítima`)
 
 #idade_valida armazena idades ignorando todos NA
@@ -184,15 +185,38 @@ cv
 #(ordenado do menor para o maior) em partes iguais
 
 # Quartis (Q): Dividem os dados em 4 partes (25% cada)
+
 OneQ <- as.numeric(CVLI_2024_a_2025_1_$`Idade da Vítima`)
 OneQ_valido <- OneQ[!is.na(OneQ)]
 Quartis <- quantile(OneQ_valido)
 Quartis
 
+idade_numerica_bp <- as.numeric(CVLI_2024_a_2025_1_$`Idade da Vítima`)
 #Bloxplot - é um gráfico usado para visualizar a distribuição e a 
 #dispersão dos seus dados, destacando as separatrizes que você acabou de calcular
-boxplot(idade_valida, 
+bp <- boxplot(idade_numerica_bp, 
         main = "Distribuição de Idade das Vítimas",
-        ylab = "Idade",
+        ylab = "Idade (Anos)",
         col = "lightblue",
-        border = "darkblue")
+        border = "darkblue",
+        outline = TRUE)
+
+#Boxplot mostrando outliners:
+
+outliers_valores <- bp$out
+
+print("Valores considerados outliers:")
+print(outliers_valores)
+
+
+freq_ESCOLARIDADE_table <- table(CVLI_2024_a_2025_1_$`Escolaridade da Vítima`)
+
+par(mar=c(11,4,4,2))
+
+barplot(freq_ESCOLARIDADE_table,
+        #xlab="Escolaridade da Vítima",
+        ylab="Quantidade",
+        main="Ocorrências por Escolaridade",
+        col=c("#FFB3BA","#BAFFC9","#BAE1FF","#FFFFBA","#E6CCFF","#FFD9B3","#C2F0FC"),
+        las=2,
+        cex.names=0.8)
