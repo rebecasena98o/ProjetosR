@@ -17,6 +17,7 @@ round(prop.table(table(Base$`5. Tipo de Residência`)),2)
 library(dplyr)
 
 
+
 tabela_res <- Base %>%
   
   
@@ -127,7 +128,7 @@ desvioPad
 cv= (desvioPad/mediaOne) * 100 #coeficiente de variação
 cv
 
-boxplot(Base$`3. Tempo Mora na Localidade`) #bloxplot
+boxplot(Base$`3. Tempo Mora na Localidade`)
 
 
 #Boxplot mostrando outliners:
