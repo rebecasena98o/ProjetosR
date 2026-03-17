@@ -25,9 +25,13 @@ freq_Raca
 
 # gráfico de setor - tipo de residência 
 
-pie(table(CVLI_2024_a_2025_1_$Gênero), col=c("pink", "blue"), main = "Gráfico de Gênero")
+pie(table(CVLI_2024_a_2025_1_$Gênero), col=c("pink", "#648DC7"), main = "Gráfico de Gênero")
 
-pie(table(CVLI_2024_a_2025_1_$`Meio Empregado`), col=c("orange", "purple"), main = "Gráfico de Meio Empregado")
+#Para diferentes cores das variáveis
+cores_personalizadas <- c("#FACD8A", "#AA99C5", "#C7E19E")
+
+pie(table(CVLI_2024_a_2025_1_$`Meio Empregado`),
+    col=cores_personalizadas, main = "Gráfico de Meio Empregado")
 
 
 #--------------------------------------------------------------------------------
@@ -51,11 +55,14 @@ barplot(freq_SEMANA_table,
 
 freq_ESCOLARIDADE_table <- table(CVLI_2024_a_2025_1_$`Escolaridade da Vítima`)
 
+
 barplot(freq_ESCOLARIDADE_table,
-        xlab="Escolaridade da Vítima",
+        #xlab="Escolaridade da Vítima",
         ylab="Quantidade",
         main="Ocorrências por Escolaridade",
-        col=c("#FFB3BA","#BAFFC9","#BAE1FF","#FFFFBA","#E6CCFF","#FFD9B3","#C2F0FC"))
+        col=c("#FFB3BA","#BAFFC9","#BAE1FF","#FFFFBA","#E6CCFF","#FFD9B3","#C2F0FC"),
+        las=2,
+        cex.names=0.8)
 
 
 
@@ -213,10 +220,4 @@ freq_ESCOLARIDADE_table <- table(CVLI_2024_a_2025_1_$`Escolaridade da Vítima`)
 
 par(mar=c(11,4,4,2))
 
-barplot(freq_ESCOLARIDADE_table,
-        #xlab="Escolaridade da Vítima",
-        ylab="Quantidade",
-        main="Ocorrências por Escolaridade",
-        col=c("#FFB3BA","#BAFFC9","#BAE1FF","#FFFFBA","#E6CCFF","#FFD9B3","#C2F0FC"),
-        las=2,
-        cex.names=0.8)
+
